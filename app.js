@@ -20,10 +20,13 @@ app.get("/", function (req, res) {
 });
 
 app.post("/", function (req, res) {
-    var item = req.body.newItem;
-    console.log(item);
-    items.push(item);
-    res.redirect("/");
+    if(req.body.list === "Work"){
+        workItems.push(req.body.newItem);
+        res.redirect("/work");
+    }else{
+        items.push(req.body.newItem);
+        res.redirect("/");
+    }
 });
 
 app.get("/work", function (req, res) {
